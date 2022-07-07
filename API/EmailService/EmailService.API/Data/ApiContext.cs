@@ -11,5 +11,6 @@ namespace EmailService.API.Data
         }
 
         public DbSet<ApiModel> ApiList { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

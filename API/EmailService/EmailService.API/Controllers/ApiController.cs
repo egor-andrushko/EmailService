@@ -1,25 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmailService.API.Services;
 using EmailService.API.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmailService.API.Controllers
 {
     [ApiController]
     [Route("api-list")]
+    [Authorize]
     public class ApiController : Controller
     {
         private readonly ApiService _service;
-        private readonly IConfiguration _config;
 
         public ApiController(ApiService service)
         {
             _service = service;
-            //_config = config;
-            //Http
-            //_config["RapidApi:ServiceApiKey"];
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetApiList()
         {
             var apiList = _service.GetAll();
@@ -30,6 +29,10 @@ namespace EmailService.API.Controllers
         public async Task<IActionResult> SendRequest(int id)
         {
             var response = await _service.SendRequest(id);
+            if (response == null)
+            {
+                return BadRequest();
+            }
             return Ok(response);
         }
 
@@ -37,6 +40,10 @@ namespace EmailService.API.Controllers
         public async Task<IActionResult> GetForecast()
         {
             var forecast = await _service.SendRequest(ResponseModel.WeatherForecast);
+            if (forecast == null)
+            {
+                return BadRequest();
+            }
             return Ok(forecast);
         }
 

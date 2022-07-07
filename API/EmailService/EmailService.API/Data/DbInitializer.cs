@@ -21,8 +21,9 @@ namespace EmailService.API.Data
                 {
                     new ApiParams
                     {
+                        Title = "Location",
                         Key = "q",
-                        Value = "Minsk"
+                        Value = "Minsk",
                     },
                 },
                 ResponseModelType = ResponseModel.WeatherForecast,

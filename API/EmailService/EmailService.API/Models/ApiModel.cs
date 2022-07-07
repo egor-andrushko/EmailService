@@ -16,8 +16,9 @@ namespace EmailService.API.Models
         [Url]
         public string? BaseUrl { get; set; }
 
-        public IEnumerable<ApiParams> RequiredParams { get; set; }
-        public IEnumerable<ApiParams> OptionalParams { get; set; }
+        public IEnumerable<ApiParams>? RequiredParams { get; set; }
+
+        public IEnumerable<ApiParams>? OptionalParams { get; set; }
 
         public ResponseModel ResponseModelType { get; set; }
 

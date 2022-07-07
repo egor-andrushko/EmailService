@@ -31,6 +31,10 @@ namespace EmailService.API.Services
 
         public async Task<ApiResponse?> SendRequest(ApiModel api) 
         {
+            if (api is null)
+            {
+                return null;
+            }
             return api.ResponseModelType switch
             {
                 ResponseModel.WeatherForecast => await _httpClient.SendRequest<ForecastWeatherResponse>(api),
